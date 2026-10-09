@@ -5,6 +5,7 @@ import Navbar from "@/components/shared/Navbar";
 import PriceTicker from "@/components/shared/PriceTicker";
 import Footer from "@/components/shared/Footer";
 import { api } from "@/lib/api";
+import type { Product } from "@/types/bazardor";
 import "./globals.css";
 
 const hind = Hind_Siliguri({
@@ -25,7 +26,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let tickerItems = [];
+  // ✅ Type explicitly define করা
+  let tickerItems: Product[] = [];
   try {
     tickerItems = await api.getProducts();
   } catch {
