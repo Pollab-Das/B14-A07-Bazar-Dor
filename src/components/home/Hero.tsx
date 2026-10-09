@@ -1,13 +1,58 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { todayBn } from "@/lib/format";
+import { useEffect, useState } from "react";
+
+const bnDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+
+function toBn(n: number | string): string {
+  return String(n).replace(/\d/g, (d) => bnDigits[Number(d)]);
+}
+
+function getTodayBn(): string {
+  const d = new Date();
+  const days = [
+    "রবিবার",
+    "সোমবার",
+    "মঙ্গলবার",
+    "বুধবার",
+    "বৃহস্পতিবার",
+    "শুক্রবার",
+    "শনিবার",
+  ];
+  const months = [
+    "জানুয়ারি",
+    "ফেব্রুয়ারি",
+    "মার্চ",
+    "এপ্রিল",
+    "মে",
+    "জুন",
+    "জুলাই",
+    "আগস্ট",
+    "সেপ্টেম্বর",
+    "অক্টোবর",
+    "নভেম্বর",
+    "ডিসেম্বর",
+  ];
+  return `${days[d.getDay()]}, ${toBn(d.getDate())} ${
+    months[d.getMonth()]
+  }, ${toBn(d.getFullYear())}`;
+}
 
 export default function Hero() {
+  // ✅ Client-side এ date render হবে, প্রতিবার fresh
+  const [dateStr, setDateStr] = useState("");
+
+  useEffect(() => {
+    setDateStr(getTodayBn());
+  }, []);
+
   return (
     <section className="bg-white rounded-3xl border border-gray-200 p-6 md:p-12 grid md:grid-cols-2 gap-6 md:gap-10 items-center mb-10">
       <div>
         <span className="inline-block bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
-          {todayBn()}
+          {dateStr || "..."}
         </span>
         <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-gray-900">
           আজকের বাজারের দাম এক নজরে
