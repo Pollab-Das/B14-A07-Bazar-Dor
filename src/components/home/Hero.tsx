@@ -41,7 +41,6 @@ function getTodayBn(): string {
 }
 
 export default function Hero() {
-  // ✅ Client-side এ date render হবে, প্রতিবার fresh
   const [dateStr, setDateStr] = useState("");
 
   useEffect(() => {
@@ -51,9 +50,21 @@ export default function Hero() {
   return (
     <section className="bg-white rounded-3xl border border-gray-200 p-6 md:p-12 grid md:grid-cols-2 gap-6 md:gap-10 items-center mb-10">
       <div>
-        <span className="inline-block bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
-          {dateStr || "..."}
-        </span>
+        {/* ✅ Date badge — table-cell trick + explicit height */}
+        <div className="mb-4">
+          <span
+            className="inline-block bg-green-50 text-green-700 rounded-full px-3.5"
+            style={{
+              fontSize: "16px",
+              fontWeight: 400,
+              lineHeight: "28px",
+              height: "28px",
+              overflow: "visible",
+            }}
+          >
+            {dateStr || "\u00A0"}
+          </span>
+        </div>
         <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-gray-900">
           আজকের বাজারের দাম এক নজরে
         </h1>
