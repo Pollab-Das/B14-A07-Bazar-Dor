@@ -9,7 +9,7 @@ export default async function HomePage() {
   try {
     products = await api.getProducts();
   } catch (err) {
-    // API fail হলে empty array — page crash হবে না
+    // API fail hole empty array — page crash hobe na 
     console.error("Failed to load products:", err);
   }
 

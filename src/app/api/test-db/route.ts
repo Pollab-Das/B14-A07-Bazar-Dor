@@ -34,7 +34,7 @@ export async function GET() {
       errorMessage: err.message,
       errorCode: err.code,
       uriLength: uri.length,
-      uriFull: uri, // 🔍 পুরো URI দেখব (password সহ — শুধু debugging এর জন্য)
+      uriFull: uri, 
     });
   }
 }

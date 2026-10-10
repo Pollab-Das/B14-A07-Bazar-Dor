@@ -14,7 +14,7 @@ async function fetcher<T>(path: string): Promise<T> {
       console.log(`[API] Trying: ${url}`);
 
       const res = await fetch(url, {
-        cache: "no-store", // ✅ Cache বন্ধ — সর্বদা fresh data
+        cache: "no-store", 
       });
 
       console.log(`[API] Response: ${res.status} ${url}`);

@@ -50,7 +50,7 @@ export default function Hero() {
   return (
     <section className="bg-white rounded-3xl border border-gray-200 p-6 md:p-12 grid md:grid-cols-2 gap-6 md:gap-10 items-center mb-10">
       <div>
-        {/* ✅ Date badge — table-cell trick + explicit height */}
+        {/* Date badge — table-cell trick */}
         <div className="mb-4">
           <span
             className="inline-block bg-green-50 text-green-700 rounded-full px-3.5"

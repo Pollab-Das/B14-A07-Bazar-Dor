@@ -11,13 +11,13 @@ export default async function ProductPage({
 }) {
   const { id } = await params;
 
-  // 🔒 Protected — লগইন ছাড়া /signin এ redirect
+  // 🔒 Protected — signin এ redirect
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) {
     redirect(`/signin?next=/product/${id}`);
   }
 
-  // API থেকে product details আনো
+  // API product details
   let product;
   try {
     product = await api.getProductById(id);
@@ -25,7 +25,7 @@ export default async function ProductPage({
     notFound();
   }
 
-  // দাম হিসাব
+  // dam hisab
   const mins = product.markets.map((m) => m.min);
   const maxs = product.markets.map((m) => m.max);
   const minPrice = Math.min(...mins);
@@ -85,9 +85,9 @@ export default async function ProductPage({
         </div>
       </div>
 
-      {/* ✅ দামের সারসংক্ষেপ + বাজারভিত্তিক আজকের দাম — একটা box এ */}
+      {/* ✅ dam box এ */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        {/* দামের সারসংক্ষেপ heading */}
+        {/* heading */}
         <h2 className="font-bold text-lg mb-4 text-gray-900">
           দামের সারসংক্ষেপ
         </h2>
@@ -114,7 +114,7 @@ export default async function ProductPage({
           />
         </div>
 
-        {/* বাজারভিত্তিক আজকের দাম heading */}
+        {/* heading */}
         <h3 className="font-bold text-base mb-4 text-gray-900">
           বাজারভিত্তিক আজকের দাম
         </h3>

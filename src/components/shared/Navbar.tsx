@@ -29,7 +29,7 @@ export default function Navbar() {
     window.location.href = "/";
   }
 
-  // ✅ User avatar URL বা fallback
+  // User fallback
   const userImage = session?.user?.image || null;
   const userName = session?.user?.name || "";
 
@@ -62,13 +62,13 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             {isPending ? null : session ? (
               <>
-                {/* ✅ User Info — Image + Name */}
+                {/* User Info — Image + Name */}
                 <Link
                   href="/profile"
                   className="flex items-center gap-2 hover:opacity-80 transition"
                 >
                   {userImage ? (
-                    // Google/GitHub থেকে আসা image
+                    // Google/GitHub image
                     <Image
                       src={userImage}
                       alt={userName}
@@ -78,7 +78,7 @@ export default function Navbar() {
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    // Fallback — নামের প্রথম অক্ষর
+                    // Fallback 
                     <div className="w-9 h-9 rounded-full bg-green-600 text-white grid place-items-center text-sm font-bold shrink-0">
                       {userName?.[0]?.toUpperCase() || "?"}
                     </div>
@@ -116,7 +116,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Second row — categories */}
+        {/* categories */}
         <nav className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
           {NAV_ITEMS.map((c) => {
             const active = pathname === `/category/${c.slug}`;

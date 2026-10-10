@@ -49,7 +49,7 @@ export default function ProfilePage() {
         আপনার অ্যাকাউন্ট তথ্য দেখুন
       </p>
 
-      {/* User Info Card */}
+      {/* User-Info Card */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 flex items-center justify-between mb-4 flex-wrap gap-3">
         <div className="flex items-center gap-4">
           {/* ✅ User Image with Fallback */}

@@ -35,7 +35,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ✅ শুধু input, select, textarea — button বাদ */
+/* input, select, textarea — button */
 input,
 select,
 textarea {
@@ -76,7 +76,7 @@ textarea::placeholder {
   scrollbar-width: none;
 }
 
-/* 🚫 Dark mode বন্ধ — কিন্তু button বাদ */
+/*  */
 @media (prefers-color-scheme: dark) {
   html,
   body {
@@ -85,7 +85,7 @@ textarea::placeholder {
     color-scheme: light !important;
   }
 
-  /* ✅ শুধু input, select, textarea — button বাদ */
+  /* */
   input,
   select,
   textarea {

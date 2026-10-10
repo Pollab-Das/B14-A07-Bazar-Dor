@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার আজকের বাজারদর এক নজরে।",
 };
 
-// ✅ Fallback ticker items — API fail হলে এগুলো দেখাবে
+// ✅ Fallback ticker items — API fail hole dekhabe 
 const FALLBACK_TICKER: Product[] = [
   { id: 1, slug: "sorno-machi-chal", nameBn: "স্বর্ণমাছি চাল", category: "chal", categoryNameBn: "চাল", categoryIcon: "🍚", unit: "kg", image: "🍚", today: 148, yesterday: 145, lastWeek: 142, lastMonth: 138, change: { dir: "up", pct: 2.1 }, markets: [] },
   { id: 2, slug: "miniket-chal", nameBn: "মিনিকেট চাল", category: "chal", categoryNameBn: "চাল", categoryIcon: "🍚", unit: "kg", image: "🍚", today: 99, yesterday: 102, lastWeek: 105, lastMonth: 100, change: { dir: "down", pct: -2.9 }, markets: [] },
@@ -49,7 +49,7 @@ export default async function RootLayout({
       tickerItems = FALLBACK_TICKER;
     }
   } catch {
-    tickerItems = FALLBACK_TICKER;   // ✅ API fail হলে fallback
+    tickerItems = FALLBACK_TICKER;   // ✅ API fail hole fallback
   }
 
   return (

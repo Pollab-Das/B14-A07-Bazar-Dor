@@ -104,7 +104,7 @@ export default function SignUpForm() {
               />
             </div>
 
-            {/* ✅ নতুন — পাসওয়ার্ড নিশ্চিত করুন */}
+            {/* ✅ new - password */}
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-2">
                 পাসওয়ার্ড নিশ্চিত করুন
