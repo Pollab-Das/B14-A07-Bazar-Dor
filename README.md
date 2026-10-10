@@ -74,58 +74,61 @@ Mobile (৩৭৫px), Tablet (৭৬৮px), Desktop (১২৮০px+) — সব
 ---
 
 ## 📁 প্রজেক্ট স্ট্রাকচার (Project Structure)
+
+```text
 bazardor/
 ├── src/
-│ ├── app/
-│ │ ├── api/auth/[...all]/route.ts # BetterAuth API endpoints
-│ │ ├── category/[slug]/
-│ │ │ ├── page.tsx # Category page
-│ │ │ └── loading.tsx # Skeleton loader
-│ │ ├── product/[id]/
-│ │ │ ├── page.tsx # Protected product details
-│ │ │ └── loading.tsx # Skeleton loader
-│ │ ├── signin/
-│ │ │ ├── page.tsx
-│ │ │ └── SignInForm.tsx
-│ │ ├── signup/
-│ │ │ ├── page.tsx
-│ │ │ └── SignUpForm.tsx
-│ │ ├── profile/page.tsx # User profile + update
-│ │ ├── layout.tsx # Root layout + Navbar + Ticker
-│ │ ├── page.tsx # Home (Hero + sections)
-│ │ ├── loading.tsx # Home skeleton
-│ │ ├── not-found.tsx # 404 page
-│ │ └── globals.css
-│ ├── components/
-│ │ ├── auth/
-│ │ │ ├── GoogleIcon.tsx
-│ │ │ └── GitHubIcon.tsx
-│ │ ├── category/
-│ │ │ ├── CategoryClient.tsx
-│ │ │ └── SortDropdown.tsx
-│ │ ├── home/
-│ │ │ └── Hero.tsx
-│ │ └── shared/
-│ │ ├── Navbar.tsx
-│ │ ├── PriceTicker.tsx
-│ │ ├── ProductCard.tsx
-│ │ └── Footer.tsx
-│ ├── lib/
-│ │ ├── api.ts # API fetch client
-│ │ ├── auth.ts # BetterAuth server config
-│ │ ├── auth-client.ts # BetterAuth client hooks
-│ │ └── format.ts # Bangla number & format utils
-│ └── types/
-│ └── bazardor.ts # TypeScript interfaces
+│   ├── app/
+│   │   ├── api/auth/[...all]/route.ts      # BetterAuth API endpoints
+│   │   ├── category/[slug]/
+│   │   │   ├── page.tsx                    # Category page
+│   │   │   └── loading.tsx                 # Skeleton loader
+│   │   ├── product/[id]/
+│   │   │   ├── page.tsx                    # Protected product details
+│   │   │   └── loading.tsx                 # Skeleton loader
+│   │   ├── signin/
+│   │   │   ├── page.tsx
+│   │   │   └── SignInForm.tsx
+│   │   ├── signup/
+│   │   │   ├── page.tsx
+│   │   │   └── SignUpForm.tsx
+│   │   ├── profile/page.tsx                # User profile + update
+│   │   ├── layout.tsx                      # Root layout + Navbar + Ticker
+│   │   ├── page.tsx                        # Home (Hero + sections)
+│   │   ├── loading.tsx                     # Home skeleton
+│   │   ├── not-found.tsx                   # 404 page
+│   │   └── globals.css
+│   ├── components/
+│   │   ├── auth/
+│   │   │   ├── GoogleIcon.tsx
+│   │   │   └── GitHubIcon.tsx
+│   │   ├── category/
+│   │   │   ├── CategoryClient.tsx
+│   │   │   └── SortDropdown.tsx
+│   │   ├── home/
+│   │   │   └── Hero.tsx
+│   │   └── shared/
+│   │       ├── Navbar.tsx
+│   │       ├── PriceTicker.tsx
+│   │       ├── ProductCard.tsx
+│   │       └── Footer.tsx
+│   ├── lib/
+│   │   ├── api.ts                          # API fetch client
+│   │   ├── auth.ts                         # BetterAuth server config
+│   │   ├── auth-client.ts                  # BetterAuth client hooks
+│   │   └── format.ts                       # Bangla number & format utils
+│   └── types/
+│       └── bazardor.ts                     # TypeScript interfaces
 ├── public/
-│ ├── bazar-hero.png
-│ └── logo-icon.png
-├── .env.local # Environment variables (gitignored)
+│   ├── bazar-hero.png
+│   └── logo-icon.png
+├── .env.local
 ├── next.config.ts
 ├── package.json
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── README.md
+```
 ---
 
 ## 🚀 লোকালি চালানোর নির্দেশনা (Run Locally)
