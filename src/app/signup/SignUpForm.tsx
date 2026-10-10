@@ -13,21 +13,31 @@ export default function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     if (password.length < 8) {
       toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে");
       return;
     }
+
+    if (password !== confirmPassword) {
+      toast.error("পাসওয়ার্ড দুইটা মিলছে না");
+      return;
+    }
+
     setLoading(true);
     const { error } = await signUp.email({ name, email, password });
     setLoading(false);
+
     if (error) {
       toast.error(error.message || "রেজিস্ট্রেশন ব্যর্থ হয়েছে");
       return;
     }
+
     toast.success("রেজিস্ট্রেশন সফল! এখন সাইন ইন করুন।");
     router.push("/signin");
   }
@@ -94,12 +104,27 @@ export default function SignUpForm() {
               />
             </div>
 
+            {/* ✅ নতুন — পাসওয়ার্ড নিশ্চিত করুন */}
+            <div>
+              <label className="text-sm font-medium text-gray-700 block mb-2">
+                পাসওয়ার্ড নিশ্চিত করুন
+              </label>
+              <input
+                type="password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="আবার লিখুন"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition"
+              />
+            </div>
+
             <button
               type="submit"
               disabled={loading}
               style={{
-                backgroundColor:"#16A34A",
-                color:"#FFFFFF"
+                backgroundColor: "#16A34A",
+                color: "#FFFFFF",
               }}
               className="w-full font-semibold rounded-lg py-3.5 text-base transition shadow-sm hover:opacity-90 disabled:opacity-60"
             >
@@ -119,7 +144,7 @@ export default function SignUpForm() {
             </div>
           </div>
 
-          {/* Social buttons — no border per Figma */}
+          {/* Social buttons */}
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
@@ -142,7 +167,10 @@ export default function SignUpForm() {
           {/* Sign in link */}
           <p className="text-center text-sm text-gray-600 mt-6">
             আকাউন্ট আছে?{" "}
-            <Link href="/signin" className="text-green-700 font-semibold hover:underline">
+            <Link
+              href="/signin"
+              className="text-green-700 font-semibold hover:underline"
+            >
               সাইন ইন করুন
             </Link>
           </p>

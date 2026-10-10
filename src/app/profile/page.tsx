@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useSession, signOut, authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -14,7 +15,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!isPending && !session) router.push("/signin?next=/profile");
-    if (session) setName(session.user.name);
+    if (session) setName(session.user.name || "");
   }, [session, isPending, router]);
 
   async function update(e: React.FormEvent) {
@@ -35,49 +36,75 @@ export default function ProfilePage() {
 
   if (isPending || !session) return null;
 
+  const userImage = session.user.image || null;
+  const userName = session.user.name || "";
+
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-1 text-gray-900">আমার প্রোফাইল</h1>
-      <p className="text-gray-500 text-sm mb-6">আপনার অ্যাকাউন্ট তথ্য দেখুন</p>
+      {/* Heading */}
+      <h1 className="text-2xl font-bold mb-1 text-gray-900">
+        আমার প্রোফাইল
+      </h1>
+      <p className="text-gray-500 text-sm mb-6">
+        আপনার অ্যাকাউন্ট তথ্য দেখুন
+      </p>
 
+      {/* User Info Card */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 flex items-center justify-between mb-4 flex-wrap gap-3">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-green-600 text-white grid place-items-center text-xl font-bold">
-            {session.user.name?.[0]?.toUpperCase() || "?"}
-          </div>
+          {/* ✅ User Image with Fallback */}
+          {userImage ? (
+            <Image
+              src={userImage}
+              alt={userName}
+              width={64}
+              height={64}
+              className="w-16 h-16 rounded-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          ) : (
+            <div className="w-16 h-16 rounded-full bg-green-600 text-white grid place-items-center text-xl font-bold">
+              {userName?.[0]?.toUpperCase() || "?"}
+            </div>
+          )}
+
           <div>
             <div className="font-semibold text-lg text-gray-900">
-              {session.user.name}
+              {userName}
             </div>
             <div className="text-gray-500 text-sm">
               {session.user.email}
             </div>
           </div>
         </div>
+
         <button
           onClick={handleSignOut}
-          className="text-red-600 border border-red-300 rounded-lg px-4 py-2 text-sm font-medium hover:bg-red-50 flex items-center gap-2"
+          className="text-red-600 border border-red-300 rounded-lg px-4 py-2 text-sm font-medium hover:bg-red-50 flex items-center gap-2 transition"
         >
           <LogOut className="w-4 h-4" />
           সাইন আউট
         </button>
       </div>
 
+      {/* Update Form Card */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
         <h2 className="font-bold mb-4 text-gray-900">তথ্য</h2>
         <form onSubmit={update} className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-700">নাম</label>
+            <label className="text-sm font-medium text-gray-700">
+              নাম
+            </label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             />
           </div>
           <button
             type="submit"
             disabled={saving}
-            className="w-full bg-green-600 text-white font-semibold rounded-lg py-3 hover:bg-green-700 disabled:opacity-60"
+            className="w-full bg-green-600 text-white font-semibold rounded-lg py-3 hover:bg-green-700 disabled:opacity-60 transition"
           >
             {saving ? "সেভ হচ্ছে..." : "আপডেট"}
           </button>

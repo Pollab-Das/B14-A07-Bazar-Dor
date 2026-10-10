@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { LogOut, User } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { todayBn } from "@/lib/format";
 
 const NAV_ITEMS = [
@@ -29,13 +29,16 @@ export default function Navbar() {
     window.location.href = "/";
   }
 
+  // ✅ User avatar URL বা fallback
+  const userImage = session?.user?.image || null;
+  const userName = session?.user?.name || "";
+
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
       <div className="max-w-6xl mx-auto px-4">
         {/* Top row — logo + auth */}
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3">
-            {/* ✅ Green rounded box with logo */}
             <div className="w-11 h-11 rounded-xl bg-green-600 grid place-items-center p-2 shrink-0">
               <Image
                 src="/logo-icon.png"
@@ -59,18 +62,36 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             {isPending ? null : session ? (
               <>
+                {/* ✅ User Info — Image + Name */}
                 <Link
                   href="/profile"
-                  className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-green-700"
+                  className="flex items-center gap-2 hover:opacity-80 transition"
                 >
-                  <User className="w-4 h-4" />
-                  <span className="hidden sm:inline">
-                    {session.user.name}
+                  {userImage ? (
+                    // Google/GitHub থেকে আসা image
+                    <Image
+                      src={userImage}
+                      alt={userName}
+                      width={36}
+                      height={36}
+                      className="rounded-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    // Fallback — নামের প্রথম অক্ষর
+                    <div className="w-9 h-9 rounded-full bg-green-600 text-white grid place-items-center text-sm font-bold shrink-0">
+                      {userName?.[0]?.toUpperCase() || "?"}
+                    </div>
+                  )}
+                  <span className="text-sm font-medium text-gray-700 hidden sm:inline">
+                    {userName}
                   </span>
                 </Link>
+
+                {/* Sign Out Button */}
                 <button
                   onClick={handleSignOut}
-                  className="text-sm text-red-600 border border-red-300 rounded-lg px-3 py-1.5 flex items-center gap-1 hover:bg-red-50"
+                  className="text-sm text-red-600 border border-red-300 rounded-lg px-3 py-1.5 flex items-center gap-1 hover:bg-red-50 transition"
                 >
                   <LogOut className="w-4 h-4" />
                   <span className="hidden sm:inline">সাইন আউট</span>
