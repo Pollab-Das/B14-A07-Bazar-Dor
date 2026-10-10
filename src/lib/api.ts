@@ -3,6 +3,7 @@ import type { Product, Category } from "@/types/bazardor";
 const BASES = [
   "https://api.abcz.workers.dev/api/bazardor",
   "https://api.api-store.workers.dev/api/bazardor",
+  "https://openapi.programming-hero.com/api/bazardor",
 ];
 
 async function fetcher<T>(path: string): Promise<T> {
